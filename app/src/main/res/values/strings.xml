@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ivf_queue</string>
+    <string name="btnMPlus">เพิ่ม queue มาตามนัด</string>
+    <string name="btnMSetup">...</string>
+    <string name="app_name1">ivf_queue</string>
+    <string name="app_name2">ivf_queue</string>
+
 </resources>

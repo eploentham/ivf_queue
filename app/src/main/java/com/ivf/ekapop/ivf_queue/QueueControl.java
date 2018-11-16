@@ -23,7 +23,7 @@ public class QueueControl extends Application implements Serializable {
 
     public ArrayList<String> sStaff = new ArrayList<String>();
 
-    public String hostIP="192.168.0.203", hostWebDirectory ="bangna_queue/web/", hostPORT="80", UserDB="root", PasswordDB ="Ekartc2c5",TextSize="",PrnO="",PrnB="",PrnC="";
+    public String hostIP="192.168.1.2", hostWebDirectory ="ivf/web/", hostPORT="80", UserDB="root", PasswordDB ="Ekartc2c5",TextSize="",PrnO="",PrnB="",PrnC="";
 
     public String hostGetStaff ="http://"+hostIP+":"+hostPORT+"/"+ hostWebDirectory +"getStaff.php";
     public String hostGetDoctor ="http://"+hostIP+":"+hostPORT+"/"+ hostWebDirectory +"getDoctor.php";
@@ -90,7 +90,7 @@ public class QueueControl extends Application implements Serializable {
         String password = "password";
         try {
 //            xmlFile = getResources().getAssets()+"initial.xml";
-            FileOutputStream fos = new FileOutputStream("com.bangna.ekapop.bangna_queue.assets/initial.xml");
+            FileOutputStream fos = new FileOutputStream("com.bangna.ekapop.bangna_queue.assets/initial.cnf");
 //            ot = getApplicationContext().openFileOutput(xmlFile, Context.MODE_PRIVATE);
             XmlSerializer xmlSerializer = Xml.newSerializer();
             StringWriter writer = new StringWriter();
