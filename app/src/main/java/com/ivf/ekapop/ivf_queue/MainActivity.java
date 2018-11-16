@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     JsonParser jsonparser = new JsonParser();
     JSONArray jarrS;
 
-    TextView lbMMessage;
+    TextView lbMMessage,lbHn,lbPrefix,lbNameE,lbSurNameE,lbPassport,lbPID,lbDOB,lbNation;
     Button btnMPlus, btnMMinus, btnMSetup;
     ImageView imageStaff;
 
@@ -50,12 +50,29 @@ public class MainActivity extends AppCompatActivity {
         btnMPlus = findViewById(R.id.btnMPlus);
         btnMSetup = findViewById(R.id.btnMSetup);
         lbMMessage = findViewById(R.id.lbMMessage);
-        imageStaff = findViewById(R.id.imageStaff);
+        //lbHn = findViewById(R.id.lbHn);
+        //lbPrefix = findViewById(R.id.lbPrefix);
+        //lbNameE = findViewById(R.id.lbNameE);
+        //lbSurNameE = findViewById(R.id.lbSurNameE);
+        //lbPassport = findViewById(R.id.lbPassport);
+        //lbPID = findViewById(R.id.lbPID);
+        //lbNation = findViewById(R.id.lbNation);
+        //imageStaff = findViewById(R.id.imageStaff);
 
         //btnMMinus.setText(R.string.btnMMinus);
         btnMPlus.setText(R.string.btnMPlus);
         btnMSetup.setText(R.string.btnMSetup);
         lbMMessage.setText("");
+        //lbHn.setText(R.string.lbHn);
+        //lbPrefix.setText(R.string.lbPrefix);
+        //lbNameE.setText(R.string.lbNameE);
+        //lbSurNameE.setText(R.string.lbSurNameE);
+        //lbPassport.setText(R.string.lbPassport);
+        //lbPID.setText(R.string.lbPID);
+        //lbDOB.setText(R.string.lbDOB);
+        //lbNation.setText(R.string.lbNation);
+        //btnMSetup.setText(R.string.btnMSetup);
+        //btnMSetup.setText(R.string.btnMSetup);
 
         qc = new QueueControl();
 

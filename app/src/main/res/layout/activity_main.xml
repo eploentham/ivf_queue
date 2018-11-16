@@ -23,7 +23,7 @@
 
     <Button
         android:id="@+id/btnMPlus"
-        android:layout_width="152dp"
+        android:layout_width="191dp"
         android:layout_height="110dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"

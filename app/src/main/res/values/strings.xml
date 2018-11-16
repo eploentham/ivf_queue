@@ -2,7 +2,12 @@
     <string name="app_name">ivf_queue</string>
     <string name="btnMPlus">เพิ่ม queue มาตามนัด</string>
     <string name="btnMSetup">...</string>
-    <string name="app_name1">ivf_queue</string>
-    <string name="app_name2">ivf_queue</string>
-
+    <string name="lbHn">HN</string>
+    <string name="lbPrefix">คำนำหน้า</string>
+    <string name="lbNameE">Name</string>
+    <string name="lbSurNameE">Surname</string>
+    <string name="lbPassport">Passport</string>
+    <string name="lbPID">ID</string>
+    <string name="lbDOB">DOB</string>
+    <string name="lbNation">Nation</string>
 </resources>
