@@ -10,4 +10,13 @@
     <string name="lbPID">ID</string>
     <string name="lbDOB">DOB</string>
     <string name="lbNation">Nation</string>
+    <string name="lbCou">Country</string>
+    <string name="lbProv">เมือง</string>
+
+    <string name="lbHostDB">Host DB</string>
+    <string name="lbNameDB">Name DB</string>
+    <string name="lbUserDB">User DB</string>
+    <string name="lbPassDB">Pass DB</string>
+    <string name="lbPortDB">Port DB</string>
+    <string name="lbWebDirectory">web dir</string>
 </resources>

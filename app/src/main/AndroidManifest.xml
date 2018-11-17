@@ -27,7 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QueueAppointmentAdd"></activity>
+        <activity android:name=".QueueAppointmentAdd" />
+        <activity android:name=".InitConfig"></activity>
     </application>
 
 </manifest>

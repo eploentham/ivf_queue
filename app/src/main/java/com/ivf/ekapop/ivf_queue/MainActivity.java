@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     JSONArray jarrS;
 
     TextView lbMMessage,lbHn,lbPrefix,lbNameE,lbSurNameE,lbPassport,lbPID,lbDOB,lbNation;
-    Button btnMPlus, btnMMinus, btnMSetup;
+    Button btnMPlus, btnMMinus, btnMInit;
     ImageView imageStaff;
 
     QueueControl qc;
@@ -46,9 +46,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         btnMPlus = findViewById(R.id.btnMPlus);
-        btnMSetup = findViewById(R.id.btnMSetup);
+        btnMInit = findViewById(R.id.btnMSetup);
         lbMMessage = findViewById(R.id.lbMMessage);
         //lbHn = findViewById(R.id.lbHn);
         //lbPrefix = findViewById(R.id.lbPrefix);
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         //btnMMinus.setText(R.string.btnMMinus);
         btnMPlus.setText(R.string.btnMPlus);
-        btnMSetup.setText(R.string.btnMSetup);
+        btnMInit.setText(R.string.btnMSetup);
         lbMMessage.setText("");
         //lbHn.setText(R.string.lbHn);
         //lbPrefix.setText(R.string.lbPrefix);
@@ -96,14 +95,14 @@ public class MainActivity extends AppCompatActivity {
 //                    txtIaHost.setText(s);
                 String[] p = s.split(";");
                 if(p.length>0){
-                    qc.hostIP = p[0].replace("host=","");
+                    qc.hostDB = p[0].replace("host=","");
 //                        txtIaPrint.setText(p[1].replace("printer=",""));
 //                        rs.hostIP = s;
 //                txtIaHost.setText(p[0].replace("host=",""));
                     //txtIaPrint.setText(p[1].replace("printer=",""));
-                    qc.hostPORT =  p[4].replace("PortNumber=","").replace("\n","");
-                    qc.hostWebDirectory =p[5].replace("WebDirectory=","").replace("\n","");
-                    qc.UserDB =p[6].replace("UserDB=","").replace("\n","");
+                    qc.portDB =  p[4].replace("PortNumber=","").replace("\n","");
+                    qc.WebDirectory =p[5].replace("WebDirectory=","").replace("\n","");
+                    qc.userDB =p[6].replace("UserDB=","").replace("\n","");
                     qc.PasswordDB =p[7].replace("PasswordDB=","").replace("\n","");
                     qc.TextSize =p[8].replace("TextSize=","").replace("\n","");
                     qc.AccessMode =p[13].replace("AccessMethod=","").replace("\n","");
@@ -121,13 +120,21 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
 //            fileErr=true;
         }
-        if(!qc.hostIP.equals("")) {
+        if(!qc.hostDB.equals("")) {
             new chkServerReachable().execute();
         }
         btnMPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent s1 = new Intent(v.getContext(), QueueAppointmentAdd.class);
+//                s1.putExtra("QueueControl",qc);
+                startActivityForResult(s1, 0);
+            }
+        });
+        btnMInit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent s1 = new Intent(v.getContext(), InitConfig.class);
 //                s1.putExtra("QueueControl",qc);
                 startActivityForResult(s1, 0);
             }
@@ -146,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 socket = new Socket();
-                socket.connect(new InetSocketAddress(qc.hostIP, port), timeout);
+                socket.connect(new InetSocketAddress(qc.hostDB, port), timeout);
                 chk = true;
             } catch (UnknownHostException uhe) {
                 chk = false;
@@ -164,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                 pd.dismiss();
                 ab = "ServerSock Hmmm... Sudden disconnection, probably you should start again!";
             }
-            return ab + qc.hostIP;
+            return ab + qc.hostDB;
         }
 
         @Override
@@ -201,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
             //Log.d("Login attempt", jobj.toString());
 //            try {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("userdb",qc.UserDB));
+            params.add(new BasicNameValuePair("userdb",qc.userDB));
             params.add(new BasicNameValuePair("passworddb",qc.PasswordDB));
             jarrS = jsonparser.getJSONFromUrl(qc.hostGetDoctor,params);
 
