@@ -30,7 +30,7 @@ public class QueueAppointmentAdd extends AppCompatActivity {
 
     TextView lbHn,lbPrefix,lbNameE,lbSurNameE,lbPassport,lbPID,lbDOB,lbNation, lbCou, lbProv;
     Spinner cboPrefix,cboNation,cboCou,cboProv;
-    Button btnSave;
+    Button btnSaveQueue;
     EditText txtHn,txtNameE,txtSurNameE,txtPassport,txtPID,txtDOB;
 
     @Override
@@ -51,7 +51,7 @@ public class QueueAppointmentAdd extends AppCompatActivity {
         cboPrefix = findViewById(R.id.cboPrefix);
         cboCou = findViewById(R.id.cboCou);
         cboProv = findViewById(R.id.cboProv);
-        btnSave = findViewById(R.id.btnSave);
+        btnSaveQueue = findViewById(R.id.btnSave);
         txtHn = findViewById(R.id.txtHn);
         txtNameE = findViewById(R.id.txtNameE);
         txtSurNameE = findViewById(R.id.txtSurNameE);
@@ -59,7 +59,7 @@ public class QueueAppointmentAdd extends AppCompatActivity {
         txtPID = findViewById(R.id.txtPID);
         txtDOB = findViewById(R.id.txtDOB);
         //btnSave = findViewById(R.id.btnSave);
-        btnSave = findViewById(R.id.btnSave);
+        btnSaveQueue = findViewById(R.id.btnSave);
 
         lbHn.setText(R.string.lbHn);
         lbPrefix.setText(R.string.lbPrefix);
@@ -71,7 +71,7 @@ public class QueueAppointmentAdd extends AppCompatActivity {
         lbCou.setText(R.string.lbCou);
         lbProv.setText(R.string.lbProv);
 
-        new retrievePrefix().execute();
+//        new retrievePrefix().execute();
     }
     class retrievePrefix extends AsyncTask<String,String,String> {
 

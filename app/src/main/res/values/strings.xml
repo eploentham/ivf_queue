@@ -2,6 +2,7 @@
     <string name="app_name">ivf_queue</string>
     <string name="btnMPlus">เพิ่ม queue มาตามนัด</string>
     <string name="btnMSetup">...</string>
+    <string name="btnSaveQueue">เพิ่ม queue</string>
     <string name="lbHn">HN</string>
     <string name="lbPrefix">คำนำหน้า</string>
     <string name="lbNameE">Name</string>
