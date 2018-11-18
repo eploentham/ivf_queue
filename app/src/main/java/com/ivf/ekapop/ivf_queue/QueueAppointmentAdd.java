@@ -51,7 +51,7 @@ public class QueueAppointmentAdd extends AppCompatActivity {
         cboPrefix = findViewById(R.id.cboPrefix);
         cboCou = findViewById(R.id.cboCou);
         cboProv = findViewById(R.id.cboProv);
-        btnSaveQueue = findViewById(R.id.btnSave);
+        btnSaveQueue = findViewById(R.id.btnSaveQueue);
         txtHn = findViewById(R.id.txtHn);
         txtNameE = findViewById(R.id.txtNameE);
         txtSurNameE = findViewById(R.id.txtSurNameE);
@@ -59,7 +59,7 @@ public class QueueAppointmentAdd extends AppCompatActivity {
         txtPID = findViewById(R.id.txtPID);
         txtDOB = findViewById(R.id.txtDOB);
         //btnSave = findViewById(R.id.btnSave);
-        btnSaveQueue = findViewById(R.id.btnSave);
+        btnSaveQueue = findViewById(R.id.btnSaveQueue);
 
         lbHn.setText(R.string.lbHn);
         lbPrefix.setText(R.string.lbPrefix);
@@ -81,7 +81,7 @@ public class QueueAppointmentAdd extends AppCompatActivity {
 //            try {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("userdb",qc.userDB));
-            params.add(new BasicNameValuePair("passworddb",qc.PasswordDB));
+            params.add(new BasicNameValuePair("passworddb",qc.passDB));
             jarrS = jsonparser.getJSONFromUrl(qc.hostGetDoctor,params);
 
 //            } catch (JSONException e) {
@@ -110,9 +110,10 @@ public class QueueAppointmentAdd extends AppCompatActivity {
             //JSONArray json = new JSONArray(jobj);
             try {
                 for (int i = 0; i < jarrS.length(); i++) {
+                    Staff sft = new Staff();
                     JSONObject catObj = (JSONObject) jarrS.get(i);
-                    qc.sCboStaff.add(catObj.getString("prefix")+ " " + catObj.getString(qc.sf.dbFNameT)+ " " + catObj.getString(qc.sf.dbLNameT));
-                    qc.sStaff.add(catObj.getString(qc.sf.dbID)+"@"+catObj.getString(qc.sf.dbCode)+"@"+catObj.getString(qc.sf.dbFNameT)+"@"+catObj.getString(qc.sf.dbLNameT)+"@"+catObj.getString("prefix"));
+                    qc.sCboStaff.add(catObj.getString("prefix")+ " " + catObj.getString(sft.dbFNameT)+ " " + catObj.getString(sft.dbLNameT));
+                    qc.sStaff.add(catObj.getString(sft.dbID)+"@"+catObj.getString(sft.dbCode)+"@"+catObj.getString(sft.dbFNameT)+"@"+catObj.getString(sft.dbLNameT)+"@"+catObj.getString("prefix"));
                 }
                 ArrayAdapter<String> adaStaff = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item,qc.sCboStaff);
                 pageLoad = true;

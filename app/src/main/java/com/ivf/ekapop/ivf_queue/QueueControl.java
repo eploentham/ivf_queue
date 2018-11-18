@@ -23,23 +23,25 @@ public class QueueControl extends Application implements Serializable {
 
     public ArrayList<String> sStaff = new ArrayList<String>();
 
-    public String hostDB="192.168.1.2", WebDirectory ="ivf/web/", portDB ="80", userDB="root", PasswordDB ="Ekartc2c5",TextSize="",PrnO="",PrnB="",PrnC="";
+    public String hostDB="192.168.1.2", WebDirectory ="ivf/web/", portDB ="80", userDB="root", passDB="Ekartc2c5",TextSize="",PrnO="",PrnB="",PrnC="",nameDB="", hostWeb="", portWeb="";
 
-    public String hostGetStaff ="http://"+hostDB+":"+ portDB +"/"+ WebDirectory +"getStaff.php";
-    public String hostGetDoctor ="http://"+hostDB+":"+ portDB +"/"+ WebDirectory +"getDoctor.php";
+    public String hostGetStaff ="http://"+hostDB+":"+ portDB +"/"+ WebDirectory +"/getStaff.php";
+    public String hostGetDoctor ="http://"+hostDB+":"+ portDB +"/"+ WebDirectory +"/getDoctor.php";
     public String hostGetDoctorQueueLast ="http://"+hostDB+":"+ portDB +"/"+ WebDirectory +"getDoctorQueueLast.php";
     public String hostGetDoctorQueueFirst ="http://"+hostDB+":"+ portDB +"/"+ WebDirectory +"getDoctorQueueFirst.php";
     public String hostInsertQueue ="http://"+hostDB+":"+ portDB +"/"+ WebDirectory +"QueueInsert.php";
     public String hostUpdateQueueFinish ="http://"+hostDB+":"+ portDB +"/"+ WebDirectory +"QueueUpdateFinish.php";
 
-    public Staff sf;
+//    public Staff sf;
+    public Boolean pageLoad=false;
 
     public QueueControl(){
-        sf = new Staff();
+//        sf = new Staff();
     }
 
     public void refresh(){
-        hostGetStaff="http://"+hostDB+":"+ portDB +"/"+ WebDirectory +"getStaff.php";
+        hostGetStaff="http://"+hostWeb+":"+portWeb+"/"+ WebDirectory +"/getStaff.php";
+        hostGetDoctor="http://"+hostWeb+":"+portWeb+"/"+ WebDirectory +"/getDoctor.php";
     }
     private void getText(Context context){
         try {

@@ -95,18 +95,22 @@ public class MainActivity extends AppCompatActivity {
 //                    txtIaHost.setText(s);
                 String[] p = s.split(";");
                 if(p.length>0){
-                    qc.hostDB = p[0].replace("host=","");
+                    qc.hostDB = p[0].replace("hostDB=","");
 //                        txtIaPrint.setText(p[1].replace("printer=",""));
 //                        rs.hostIP = s;
 //                txtIaHost.setText(p[0].replace("host=",""));
                     //txtIaPrint.setText(p[1].replace("printer=",""));
-                    qc.portDB =  p[4].replace("PortNumber=","").replace("\n","");
+                    qc.portDB =  p[4].replace("portDB=","").replace("\n","");
                     qc.WebDirectory =p[5].replace("WebDirectory=","").replace("\n","");
-                    qc.userDB =p[6].replace("UserDB=","").replace("\n","");
-                    qc.PasswordDB =p[7].replace("PasswordDB=","").replace("\n","");
+                    qc.nameDB =p[1].replace("nameDB=","").replace("\n","");
+                    qc.userDB =p[2].replace("userDB=","").replace("\n","");
+                    qc.passDB =p[3].replace("passDB=","").replace("\n","");
+                    qc.hostWeb =p[6].replace("hostWeb=","").replace("\n","");
+                    qc.portWeb =p[7].replace("portWeb=","").replace("\n","");
+
                     qc.TextSize =p[8].replace("TextSize=","").replace("\n","");
-                    qc.AccessMode =p[13].replace("AccessMethod=","").replace("\n","");
-                    qc.HostID =p[12].replace("HostID=","").replace("\n","");
+                    qc.AccessMode =p[8].replace("AccessMethod=","").replace("\n","");
+
 //                txtIaTaxID.setText(p[3].replace("TaxID=",""));
 //                txtIaPortID.setText(p[4].replace("PortNumber=",""));
 //                txtIaWebDirectory.setText(p[5].replace("WebDirectory=",""));
@@ -121,22 +125,28 @@ public class MainActivity extends AppCompatActivity {
 //            fileErr=true;
         }
         if(!qc.hostDB.equals("")) {
-            new chkServerReachable().execute();
+//            new chkServerReachable().execute();
+            new retrieveStaff().execute();
         }
         btnMPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent s1 = new Intent(v.getContext(), QueueAppointmentAdd.class);
-//                s1.putExtra("QueueControl",qc);
+                s1.putExtra("QueueControl",qc);
                 startActivityForResult(s1, 0);
             }
         });
         btnMInit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent s1 = new Intent(v.getContext(), InitConfig.class);
-//                s1.putExtra("QueueControl",qc);
-                startActivityForResult(s1, 0);
+                try{
+                    Intent s1 = new Intent(v.getContext(), InitConfig.class);
+                    s1.putExtra("QueueControl",qc);
+                    startActivity(s1);
+                }
+                catch (Exception e) {
+                    Log.w("btnMInit", "Error Package name not found ", e);
+                }
             }
         });
     }
@@ -208,8 +218,9 @@ public class MainActivity extends AppCompatActivity {
             //Log.d("Login attempt", jobj.toString());
 //            try {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("userdb",qc.userDB));
-            params.add(new BasicNameValuePair("passworddb",qc.PasswordDB));
+            params.add(new BasicNameValuePair("userDB",qc.userDB));
+            params.add(new BasicNameValuePair("passDB",qc.passDB));
+            params.add(new BasicNameValuePair("nameDB",qc.nameDB));
             jarrS = jsonparser.getJSONFromUrl(qc.hostGetDoctor,params);
 
 //            } catch (JSONException e) {
@@ -238,8 +249,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 for (int i = 0; i < jarrS.length(); i++) {
                     JSONObject catObj = (JSONObject) jarrS.get(i);
-                    qc.sCboStaff.add(catObj.getString(qc.sf.dbFNameT));
-                    qc.sStaff.add(catObj.getString(qc.sf.dbID)+"@"+catObj.getString(qc.sf.dbCode)+"@"+catObj.getString(qc.sf.dbFNameT));
+//                    qc.sCboStaff.add(catObj.getString(qc.sf.dbFNameT));
+//                    qc.sStaff.add(catObj.getString(qc.sf.dbID)+"@"+catObj.getString(qc.sf.dbCode)+"@"+catObj.getString(qc.sf.dbFNameT));
                 }
                 imageStaff.setImageResource(R.mipmap.circle_green);
             }catch (JSONException e) {
