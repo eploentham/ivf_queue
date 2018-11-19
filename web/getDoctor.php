@@ -3,11 +3,12 @@
 
 //$conn = new ConnectDB();
 $resultArray = array();
+$intNumRows="aaaa";
 //$resultArray["area"] = array();
 $conn = mysqli_connect("localhost",$_POST['userDB'],$_POST['passDB']);
 $objDB = mysqli_select_db($conn,$_POST['nameDB']);
 mysqli_query($conn,"SET NAMES UTF8");
-$sql = "Select * From b_staff Where staff_active = '1' and position_id = '1' Order By sort1";
+$sql = "Select * From b_staff Where active = '1' and posi_id = '1' Order By staff_id";
 if ($result=mysqli_query($conn,$sql)){
 	$intNumRows = mysqli_num_rows($result);
 	while($row = mysqli_fetch_array($result)){
@@ -48,5 +49,6 @@ mysqli_close($conn);
 	//$description = $_POST['description'];
 	//$conn->getArea();
 header('Content-Type: application/json');
+echo $sql."<br>".$intNumRows."<br>";
 echo json_encode($resultArray);
 ?>
